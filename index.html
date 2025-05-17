@@ -39,49 +39,85 @@
       border-top: 1px solid #ccc;
       padding-top: 1rem;
     }
+    #formMessage {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <h1>Collectif "Armen, à gauche!"</h1>
 
   <nav>
-    <a href="#">Manifeste</a>
-    <a href="#">Articles</a>
-    <a href="#">Communiqués</a>
-    <a href="#">Contact</a>
-    <h2>Contact</h2>
-<form action="https://formspree.io/f/TON-CODE-ICI" method="POST">
-  <label for="name">Nom :</label><br />
-  <input type="text" id="name" name="name" required><br /><br />
-
-  <label for="email">Adresse mail :</label><br />
-  <input type="email" id="email" name="email" required><br /><br />
-
-  <label for="message">Message :</label><br />
-  <textarea id="message" name="message" rows="6" required></textarea><br /><br />
-
-  <button type="submit">Envoyer</button>
-</form>
-    <a href="#">Newsletter</a>
-    <a href="#">Faire un don</a>
+    <a href="#manifeste">Manifeste</a>
+    <a href="#textes">Articles</a>
+    <a href="#contact">Contact</a>
+    <a href="#newsletter">Newsletter</a>
+    <a href="#don">Faire un don</a>
   </nav>
 
-  <section>
+  <section id="manifeste">
     <h2>Manifeste</h2>
     <p>
       Nous sommes une initiative née de l'urgence : face aux récupérations de nos luttes par les droites et extrême-droite en France, face aux silences sur les colonialismes passés et présents, face à l'effacement des Arménien·nes de classe populaire, migrants, sans papiers, queer, nous écrivons. Pour dédroitiser nos diasporas, pour reconstruire une mémoire arménienne populaire, internationaliste, anti-impérialiste, anti-sioniste et progressiste.
     </p>
   </section>
 
-  <section>
+  <section id="textes">
     <h2>Textes</h2>
     <p>
       À venir : articles sur Manouchian, sur l'antiracisme arménien, sur la politisation de la mémoire, sur les complicités européennes dans le génocide, sur la complicité Azerbaijan-Israel, etc.
     </p>
   </section>
 
+  <section id="contact">
+    <h2>Contact</h2>
+    <form action="https://formspree.io/f/xdkgbdre" method="POST" onsubmit="return validateForm()">
+      <label for="name">Nom :</label><br>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="email">Adresse mail :</label><br>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <label for="message">Message :</label><br>
+      <textarea id="message" name="message" rows="6" required></textarea><br><br>
+
+      <button type="submit">Envoyer</button>
+      <p id="formMessage"></p>
+    </form>
+  </section>
+
+  <section id="newsletter">
+    <h2>Newsletter</h2>
+    <p>Bientôt disponible.</p>
+  </section>
+
+  <section id="don">
+    <h2>Faire un don</h2>
+    <p>Un lien vers une cagnotte (type Leetchi ou GoFundMe) sera bientôt disponible ici.</p>
+  </section>
+
   <footer>
     © 2025 Armen, à gauche! – Tous droits réservés. Reproduction strictement interdite.
   </footer>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const formMessage = document.getElementById("formMessage");
+
+      if (!name || !email || !message) {
+        formMessage.textContent = "Veuillez remplir tous les champs.";
+        formMessage.style.color = "red";
+        return false;
+      }
+
+      formMessage.textContent = "Message envoyé avec succès.";
+      formMessage.style.color = "green";
+      return true;
+    }
+  </script>
 </body>
 </html>
